@@ -25,6 +25,7 @@ socket.on("disconnect", () => {
 socket.on('start', (data) => {
     console.log('Message received:  ', data)
     state.started = data
+    state.finish = false
 })
 
 socket.on('color', (data) => {

@@ -43,6 +43,11 @@ export default {
       socket.emit("start", false);
       this.startedState = false;
     },
+    finish() {
+      console.log("preparando envio para finalizar...");
+      socket.emit("finish", false);
+      this.startedState = false;
+    },
     connect() {
       socket.connect();
     },
@@ -64,6 +69,7 @@ export default {
     <div class="buttons">
       <button class="start" @click="start()">Iniciar</button>
       <button class="stop" @click="stop()">Parar</button>
+      <button class="finish" @click="finish()">Finalizar</button>
       <button class="default" @click="connect()">Connect</button>
       <button class="default" @click="disconnect()">Disconnect</button>
     </div>
