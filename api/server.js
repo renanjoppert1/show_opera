@@ -6,7 +6,7 @@ const app = express();
 const httpServer = createServer(app);
 const io = new Server(httpServer, {
     cors: {
-        origin: "https://show-opera.vercel.app"
+        origin: "https://rfb.one"
     }
 });
 
