@@ -5,14 +5,19 @@
     }"
   >
     <img src="@/assets/fundo-final.png" />
-    <h1 v-if="showAvisos" class="aviso">
+    <h1 v-if="showAvisos && finished == false" class="aviso">
       Participe conosco, deixe o celular no para o alto com a tela apontada para
       o palco
     </h1>
-    <h1 v-if="finished === true">
-      Obrigado por participar, estou te redirecionando para o nosso Instagram em
-      <span>{{ countTime }}</span>
-    </h1>
+    <div class="finished" v-if="finished === true">
+      <img src="@/assets/instagram.png" />
+      <a
+        href="https://www.instagram.com/oraulfernand/"
+        target="_blank"
+        rel="noopener noreferrer"
+        >Seguir No Instagram</a
+      >
+    </div>
   </main>
 </template>
 
@@ -33,32 +38,8 @@ export default {
   },
   data() {
     return {
-      countTime: 3,
       showAvisos: true,
     };
-  },
-  watch: {
-    async finished(to) {
-      console.log("mudou finished", to);
-      if (to === true) {
-        for (let i = 0; i < 3; i++) {
-          await new Promise((resolve) => {
-            setTimeout(() => {
-              this.countTime--;
-
-              if (this.countTime == 0) {
-                let newTab = window.open();
-                newTab.location.href =
-                  "https://www.instagram.com/oraulfernand/";
-                return;
-              }
-            }, 2500);
-
-            resolve();
-          });
-        }
-      }
-    },
   },
   mounted() {
     setTimeout(() => {
@@ -90,6 +71,29 @@ main h1 {
   font-weight: bold;
   font-size: 26px;
   color: #fff;
+  text-align: center;
+}
+
+.finished {
+  width: 95%;
+  margin: auto;
+  display: block;
+  border-radius: 10px;
+  background: #fff;
+  padding: 20px;
+  margin-top: -110px;
+}
+
+.finished img {
+  max-width: 100%;
+}
+
+.finished a {
+  background: #0095f6;
+  color: #fff;
+  display: block;
+  border-radius: 4px;
+  padding: 8px;
   text-align: center;
 }
 
