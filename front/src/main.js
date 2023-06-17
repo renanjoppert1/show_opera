@@ -11,9 +11,12 @@ const app = createApp(App)
 
 app.use(createPinia())
 app.use(router)
+// config: { id: 'G-BNLXHSPF7L' }
 
 app.use(VueGtag, {
-    config: { id: 'G-BNLXHSPF7L' }
-})
+    config: { id: 'G-BNLXHSPF7L' },
+    router,
+    enabled: true,
+});
 
 app.mount('#app')
