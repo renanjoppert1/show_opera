@@ -6,7 +6,7 @@ const app = express();
 const httpServer = createServer(app);
 const io = new Server(httpServer, {
     cors: {
-        origin: "https://rfb.one"
+        origin: "*"
     }
 });
 
@@ -274,19 +274,17 @@ const coresHex = [
 ];
 
 
-
-console.clear()
-
 io.on("connection", (socket) => {
     console.log("A user with ID: " + socket.id + " connected");
     connections.push(socket.id);
+
     socket.broadcast.emit("connections", connections.length);
     socket.emit("color", selectedColor);
 
     socket.on("disconnect", function () {
         console.log("A user with ID: " + socket.id + " disconnected");
         const index = connections.indexOf(socket.id);
-        console.log(index);
+
         if (index > -1) {
             connections.splice(index, 1);
             socket.broadcast.emit("connections", connections.length);
@@ -327,6 +325,11 @@ io.on("connection", (socket) => {
         started = false
         socket.broadcast.emit("color", defaultColor);
         socket.broadcast.emit("finish", true);
+    })
+
+    socket.on('links', () => {
+        socket.broadcast.emit("links", true);
+        started = false
     })
 
 });

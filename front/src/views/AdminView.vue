@@ -48,6 +48,10 @@ export default {
       socket.emit("finish", false);
       this.startedState = false;
     },
+    links() {
+      socket.emit("links", true);
+      this.startedState = false;
+    },
     connect() {
       socket.connect();
     },
@@ -70,6 +74,7 @@ export default {
       <button class="start" @click="start()">Iniciar</button>
       <button class="stop" @click="stop()">Parar</button>
       <button class="finish" @click="finish()">Finalizar</button>
+      <button class="links" @click="links()">Mostrar Links</button>
       <button class="default" @click="connect()">Connect</button>
       <button class="default" @click="disconnect()">Disconnect</button>
     </div>
