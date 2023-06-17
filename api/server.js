@@ -12,6 +12,7 @@ const io = new Server(httpServer, {
 
 const connections = []
 let started = false
+let showLinks = false
 
 const defaultColor = '#10001d';
 let selectedColor = defaultColor;
@@ -280,6 +281,9 @@ io.on("connection", (socket) => {
 
     socket.broadcast.emit("connections", connections.length);
     socket.emit("color", selectedColor);
+    if (showLinks === true) {
+        socket.broadcast.emit("links", true);
+    }
 
     socket.on("disconnect", function () {
         console.log("A user with ID: " + socket.id + " disconnected");
@@ -294,6 +298,9 @@ io.on("connection", (socket) => {
     socket.on("start", async (data) => {
         socket.broadcast.emit("start", data);
         started = data
+        if (started === true) {
+            showLinks = false
+        }
 
         for (let i = 0; i < coresHex.length; i++) {
             if (started != true) {
@@ -330,6 +337,7 @@ io.on("connection", (socket) => {
     socket.on('links', () => {
         socket.broadcast.emit("links", true);
         started = false
+        showLinks = true
     })
 
 });
