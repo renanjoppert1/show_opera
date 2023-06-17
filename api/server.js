@@ -282,7 +282,7 @@ io.on("connection", (socket) => {
     socket.broadcast.emit("connections", connections.length);
     socket.emit("color", selectedColor);
     if (showLinks === true) {
-        socket.broadcast.emit("links", true);
+        socket.emit("links", true);
     }
 
     socket.on("disconnect", function () {
