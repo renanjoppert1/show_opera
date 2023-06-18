@@ -28,8 +28,7 @@ export default {
 
 <template>
   <div>
-    <home-component v-if="links === false" />
-    <links-component v-if="links === true" />
+    <links-component />
   </div>
 </template>
 
