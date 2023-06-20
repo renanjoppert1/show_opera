@@ -17,7 +17,7 @@
         <ul>
           <li>
             <a
-              href="https://api.whatsapp.com/send?phone=5541984862043&text=Ol%C3%A1!%20Gostaria%20de%20saber%20como%20te%20chamo%20para%20tocar%20na%20minha%20igreja"
+              href="https://api.whatsapp.com/send?phone=5541984862043&text=Ol%C3%A1,%20gostaria%20de%20informa%C3%A7%C3%B5es%20sobre%20agenda"
               >Convites</a
             >
           </li>
